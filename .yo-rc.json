@@ -40,9 +40,9 @@
         "extension": "scss"
       },
       "jsPreprocessor": {
-        "key": "babel",
-        "extension": "js",
-        "srcExtension": "es6"
+        "key": "typescript",
+        "extension": "ts",
+        "srcExtension": "ts"
       },
       "htmlPreprocessor": {
         "key": "none",

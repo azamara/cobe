@@ -1,8 +1,30 @@
-'use strict';
+module cobe {
+  'use strict';
 
-class MainCtrl {
-  constructor ($scope) {
-    $scope.awesomeThings = [
+  class Thing {
+    public rank: number;
+    public title: string;
+    public url: string;
+    public description: string;
+    public logo: string;
+
+    constructor(title: string, url: string, description: string, logo: string) {
+      this.title = title;
+      this.url = url;
+      this.description = description;
+      this.logo = logo;
+      this.rank = Math.random();
+    }
+  }
+
+  interface IMainScope extends ng.IScope {
+    awesomeThings: Thing[]
+  }
+
+  export class MainCtrl {
+    /* @ngInject */
+    constructor ($scope: IMainScope) {
+      var awesomeThings = [
       {
         'title': 'AngularJS',
         'url': 'https://angularjs.org/',
@@ -46,18 +68,19 @@ class MainCtrl {
         'logo': 'node-sass.png'
       },
       {
-        'title': 'ES6 (Babel formerly 6to5)',
-        'url': 'https://babeljs.io/',
-        'description': 'Turns ES6+ code into vanilla ES5, so you can use next generation features today.',
-        'logo': 'babel.png'
+        'title': 'TypeScript',
+        'url': 'http://www.typescriptlang.org/',
+        'description': 'TypeScript, a typed superset of JavaScript that compiles to plain JavaScript.',
+        'logo': 'typescript.png'
       }
     ];
-    $scope.awesomeThings.forEach(function(awesomeThing) {
-      awesomeThing.rank = Math.random();
-    });
+
+      $scope.awesomeThings = new Array<Thing>();
+
+      awesomeThings.forEach(function(awesomeThing: Thing) {
+        $scope.awesomeThings.push(awesomeThing);
+      });
+    }
   }
+
 }
-
-MainCtrl.$inject = ['$scope'];
-
-export default MainCtrl;

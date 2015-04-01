@@ -74,12 +74,12 @@ module.exports = function(options) {
   gulp.task('other', function () {
     return gulp.src([
       options.src + '/**/*',
-      '!' + options.src + '/**/*.{html,css,js,scss}'
+      '!' + options.src + '/**/*.{html,css,js,scss,ts}'
     ])
       .pipe(gulp.dest(options.dist + '/'));
   });
 
-  gulp.task('clean', function (done) {
+  gulp.task('clean', ['tsd:purge'], function (done) {
     $.del([options.dist + '/', options.tmp + '/'], done);
   });
 
